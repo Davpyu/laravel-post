@@ -13,6 +13,11 @@ class Post extends Model
         'content'
     ];
 
+    protected $hidden = [
+        'user_id',
+        'updated_at'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
