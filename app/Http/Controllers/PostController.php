@@ -3,38 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\Repositories\PostRepository;
+use App\Repositories\Interfaces\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function __construct(PostRepository $postRepository)
+    public function __construct(PostRepositoryInterface $postRepositoryInterface)
     {
-        $this->repository = $postRepository;
+        $this->repository = $postRepositoryInterface;
     }
 
     public function index()
     {
-        return response()->json($this->repository->all(), 200);
+        $data = $this->repository->all();
+        return view('', $data);
+    }
+
+    public function userPost(int $id)
+    {
+        return response()->json($this->repository->allFromUser($id), 200);
     }
 
     public function show(Post $post)
     {
-        return response()->json($this->repository->details($post), 200);
+        $data = $this->repository->details($post);
+        return view('', $data);
     }
 
     public function store(Request $request)
     {
-        # code...
+        return $this->repository->save($request);
     }
 
     public function update(Post $post, Request $request)
     {
-        # code...
+        return $this->repository->update($post, $request);
     }
 
-    public function delete(Post $post)
+    public function destroy(Post $post)
     {
-        # code...
+        return $this->repository->delete($post);
     }
 }

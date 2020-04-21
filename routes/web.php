@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/post', 'PostController@index');
+Route::get('/post/{post:slug}', 'PostController@show');
+Route::post('/post', 'PostController@store');
+Route::put('/post/{post}', 'PostController@update');
+Route::delete('post/{post}', 'PostController@destroy');
+Route::get('user/{user_id}/post', 'PostController@userPost');
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@login');
+Route::get('logout', 'UserController@logout');
