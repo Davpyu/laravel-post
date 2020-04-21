@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\UserContract;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserRepository extends Repository implements UserRepositoryInterface
+class UserRepository extends Repository implements UserContract
 {
     public function register(Request $request)
     {
@@ -19,7 +19,7 @@ class UserRepository extends Repository implements UserRepositoryInterface
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->all())) {
+        if (! Auth::attempt($request->all())) {
             return 'login error';
         }
         return Auth::user();

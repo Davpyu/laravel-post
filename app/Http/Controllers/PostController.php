@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\Repositories\Interfaces\PostRepositoryInterface;
+use App\Repositories\Interfaces\PostContract;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function __construct(PostRepositoryInterface $postRepositoryInterface)
+    public function __construct(PostContract $postContract)
     {
-        $this->repository = $postRepositoryInterface;
+        $this->repository = $postContract;
     }
 
     public function index()

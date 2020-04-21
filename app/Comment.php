@@ -11,7 +11,7 @@ class Comment extends Model
         'name',
         'email',
         'website',
-        'comment'
+        'comment',
     ];
 
     public function post()

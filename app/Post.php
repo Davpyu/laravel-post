@@ -10,12 +10,12 @@ class Post extends Model
         'user_id',
         'title',
         'slug',
-        'content'
+        'content',
     ];
 
     protected $hidden = [
         'user_id',
-        'updated_at'
+        'updated_at',
     ];
 
     public function user()

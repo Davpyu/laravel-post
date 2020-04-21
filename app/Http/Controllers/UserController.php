@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\UserContract;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct(UserRepositoryInterface $userRepositoryInterface)
+    public function __construct(UserContract $userContract)
     {
-        $this->repository = $userRepositoryInterface;
+        $this->repository = $userContract;
     }
 
     public function register(Request $request)

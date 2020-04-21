@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-interface RepositoryInterface
+interface Contract
 {
     public function getCacheKey(string $cache, string $key);
     public function getTTL(int $ttl);

@@ -2,20 +2,21 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interfaces\RepositoryInterface;
+use App\Repositories\Interfaces\Contract;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
-class Repository implements RepositoryInterface
+class Repository implements Contract
 {
     public function getCacheKey(string $cache, string $key)
     {
-        return "$cache." . strtoupper($key);
+        return "${cache}." . strtoupper($key);
     }
 
     public function forgetCache(array $cache)
     {
-        for ($i = 0; $i < count($cache); $i++) {
+        $count = count($cache);
+        for ($i = 0; $i < $count; $i++) {
             if (Cache::has($cache[$i])) {
                 Cache::forget($cache[$i]);
             }
