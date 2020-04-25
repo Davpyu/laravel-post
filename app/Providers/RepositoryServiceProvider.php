@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\Interfaces\PostContract;
-use App\Repositories\Interfaces\UserContract;
+use App\Repositories\CommentRepository;
+use App\Repositories\Contracts\CommentContract;
+use App\Repositories\Contracts\PostContract;
+use App\Repositories\Contracts\UserContract;
 use App\Repositories\PostRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +35,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             UserContract::class,
             UserRepository::class
+        );
+        $this->app->bind(
+            CommentContract::class,
+            CommentRepository::class
         );
     }
 }

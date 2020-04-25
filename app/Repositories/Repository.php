@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interfaces\Contract;
+use App\Repositories\Contracts\Contract;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/post', 'PostController@index');
-Route::get('/post/{post:slug}', 'PostController@show');
-Route::post('/post', 'PostController@store');
-Route::put('/post/{post}', 'PostController@update');
-Route::delete('post/{post}', 'PostController@destroy');
-Route::get('user/{user_id}/post', 'PostController@userPost');
-Route::post('register', 'UserController@register');
-Route::post('login', 'UserController@login');
-Route::get('logout', 'UserController@logout');
+Route::resource('post', 'PostController')->except(['index', 'show']);
+
+Route::get('/', 'PostController@index')->name('post.index');
+
+Route::name('post.')->group(function () {
+    Route::get('post/search', 'PostController@search')->name('search');
+    Route::get('post/{post:slug}', 'PostController@show')->name('show');
+    Route::get('user/{user_id}/post', 'PostController@userPost')->name('by.user');
+});
+
+Route::post('post/{id}/comments', 'CommentController@store')->name('comment.store');
+
+Route::name('auth.')->group(function () {
+    Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+    Route::get('register', 'UserController@registerForm')->name('register.form');
+    Route::get('login', 'UserController@loginForm')->name('form.login');
+    Route::post('register', 'UserController@register')->name('register');
+    Route::post('login', 'UserController@login')->name('login');
+    Route::get('logout', 'UserController@logout')->name('logout')->middleware('auth');
+});

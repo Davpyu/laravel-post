@@ -27,4 +27,15 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function getOverviewAttribute()
+    {
+        $overview = explode(' ', $this->content, 51);
+        $url = route('post.show', $this->slug);
+        if (count($overview) == 51) {
+            $overview[50] = "<a href='{$url}' class='no-underline text-sm text-teal-500 hover:text-teal-700'>... Read More &raquo;&raquo;&raquo;</a>";
+        }
+        $overview = implode(' ', $overview);
+        return $overview;
+    }
 }
