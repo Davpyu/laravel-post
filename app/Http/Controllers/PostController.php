@@ -35,13 +35,14 @@ class PostController extends Controller
 
     public function userPost(int $id)
     {
-        return response()->json($this->repository->allFromUser($id), 200);
+        $response = $this->repository->allFromUser($id);
+        return view('user.dashboard', compact('response'));
     }
 
     public function show(Post $post)
     {
-        $data = $this->repository->details($post);
-        return view('', $data);
+        $response = $this->repository->details($post);
+        return view('posts.details', compact('response'));
     }
 
     public function edit(Post $post)

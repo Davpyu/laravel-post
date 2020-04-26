@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Repositories\Contracts\CommentContract;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -12,10 +12,13 @@ class CommentController extends Controller
         $this->repository = $commentContract;
     }
 
-    public function store(Request $request, $id)
+    public function store(CommentRequest $request)
     {
-        $data = $request->all();
-        $data['post_id'] = $id;
-        return $this->repository->save($data);
+        $data = $this->repository->save($request);
+        if ($data === 'comment added') {
+            return redirect()->back()->with('success', $data);
+        } else {
+            return redirect()->back()->with('gagal', $data);
+        }
     }
 }

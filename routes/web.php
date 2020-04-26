@@ -24,7 +24,7 @@ Route::name('post.')->group(function () {
     Route::get('user/{user_id}/post', 'PostController@userPost')->name('by.user');
 });
 
-Route::post('post/{id}/comments', 'CommentController@store')->name('comment.store');
+Route::post('comments', 'CommentController@store')->name('comment.store');
 
 Route::name('auth.')->group(function () {
     Route::get('dashboard', 'UserController@dashboard')->name('dashboard');

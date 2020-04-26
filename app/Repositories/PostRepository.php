@@ -79,7 +79,9 @@ class PostRepository extends Repository implements PostContract
             $this->getCacheKey(self::CACHE, "from.{$id}"),
             $this->getTTL(15),
             function () use ($id) {
-                return User::with('post')->find($id);
+                return User::with(['post' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }])->find($id);
             }
         );
     }
@@ -90,7 +92,7 @@ class PostRepository extends Repository implements PostContract
             $this->getCacheKey(self::CACHE, "details.{$post->id}"),
             $this->getTTL(15),
             function () use ($post) {
-                return $post->load('comment');
+                return $post->load(['user', 'comment']);
             }
         );
     }

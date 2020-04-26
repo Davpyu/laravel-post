@@ -11,7 +11,7 @@
 
     <body class="bg-gray-200 min-h-screen flex flex-col justify-between">
         @include('layouts._header')
-        <main class="mt-20">
+        <main class="mt-20 sm:mt-32 lg:mt-20">
             <section class="container mx-auto">
                 @yield('section')
             </section>

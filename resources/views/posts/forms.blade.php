@@ -23,7 +23,7 @@
             </label>
             <textarea
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('content') border border-red-300 border-solid @enderror"
-                id="content" type="content" placeholder="content" name="content"
+                id="content" type="text" placeholder="content" name="content"
                 rows="10">{{ $response->content }}</textarea>
             @error('content')
             <p class="text-red-500 text-xs italic">{{ $message }}</p>

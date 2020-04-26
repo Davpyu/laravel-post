@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 class CommentRepository extends Repository implements CommentContract
 {
-    public function save(array $array)
+    public function save(Request $request)
     {
-        $post = Comment::create($array);
-        if ($post) {
+        $comment = Comment::create($request->except('_token'));
+        if ($comment) {
+            $this->forgetCache(["POST.DETAILS.{$comment->post_id}"]);
             return 'comment added';
+        } else {
+            return 'comment gagal';
         }
     }
 }

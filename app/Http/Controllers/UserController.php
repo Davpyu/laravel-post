@@ -36,7 +36,7 @@ class UserController extends Controller
         if (Auth::check()) {
             return redirect()->route('post.index');
         } else {
-            return redirect()->back()->with('errorsLogin', $data);
+            return redirect()->back()->with('gagal', $data);
         }
     }
 

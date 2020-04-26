@@ -2,13 +2,11 @@
 
 @section('section')
 <div class="w-full">
-    @if (Session::has('success'))
-    <p class="text-white text-sm italic w-full bg-green-500">{{ Session::get('success') }}</p>
-    @endif
+    @include('layouts._flash')
     <h2 class="text-3xl text-gray-700">All post by {{ $response->name }}</h2>
     @forelse ($response->post as $res)
     <article class="shadow-md mt-4 bg-white p-5 rounded-md">
-        @if ($response->name === Auth::user()->name)
+        @if (Auth::check() && $response->name === Auth::user()->name)
         <a href="{{ route('post.edit', $res->id) }}" class="no-underline">
             <span class="max-w-sm bg-yellow-400 rounded p-2 text-xs text-white hover:bg-yellow-500">Ubah Post</span>
         </a>

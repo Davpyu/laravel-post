@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->integer('post_id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('website')->nullable();
             $table->text('comment');
             $table->timestamps();
