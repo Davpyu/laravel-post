@@ -32,10 +32,9 @@ class Post extends Model
     {
         $overview = explode(' ', $this->content, 51);
         $url = route('post.show', $this->slug);
-        if (count($overview) == 51) {
+        if (count($overview) === 51) {
             $overview[50] = "<a href='{$url}' class='no-underline text-sm text-teal-500 hover:text-teal-700'>... Read More &raquo;&raquo;&raquo;</a>";
         }
-        $overview = implode(' ', $overview);
-        return $overview;
+        return implode(' ', $overview);
     }
 }

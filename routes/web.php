@@ -14,23 +14,37 @@ use Illuminate\Support\Facades\View;
 |
 */
 
-Route::resource('post', 'PostController')->except(['index', 'show']);
+Route::resource('post', 'PostController')
+    ->except(['index', 'show']);
 
-Route::get('/', 'PostController@index')->name('post.index');
+Route::get('/', 'PostController@index')
+    ->name('post.index');
 
 Route::name('post.')->group(function () {
-    Route::get('post/search', 'PostController@search')->name('search');
-    Route::get('post/{post:slug}', 'PostController@show')->name('show');
-    Route::get('user/{user_id}/post', 'PostController@userPost')->name('by.user');
+    Route::get('post/search', 'PostController@search')
+        ->name('search');
+    Route::get('post/{post:slug}', 'PostController@show')
+        ->name('show');
+    Route::get('user/{user_id}/post', 'PostController@userPost')
+        ->name('by.user');
 });
 
-Route::post('comments', 'CommentController@store')->name('comment.store');
+Route::post('comments', 'CommentController@store')
+    ->name('comment.store');
 
 Route::name('auth.')->group(function () {
-    Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
-    Route::get('register', 'UserController@registerForm')->name('register.form');
-    Route::get('login', 'UserController@loginForm')->name('form.login');
-    Route::post('register', 'UserController@register')->name('register');
-    Route::post('login', 'UserController@login')->name('login');
-    Route::get('logout', 'UserController@logout')->name('logout')->middleware('auth');
+    Route::get('dashboard', 'UserController@dashboard')
+        ->name('dashboard')
+        ->middleware('auth');
+    Route::get('register', 'UserController@registerForm')
+        ->name('register.form');
+    Route::get('login', 'UserController@loginForm')
+        ->name('form.login');
+    Route::post('register', 'UserController@register')
+        ->name('register');
+    Route::post('login', 'UserController@login')
+        ->name('login');
+    Route::get('logout', 'UserController@logout')
+        ->name('logout')
+        ->middleware('auth');
 });

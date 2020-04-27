@@ -17,8 +17,7 @@ class CommentController extends Controller
         $data = $this->repository->save($request);
         if ($data === 'comment added') {
             return redirect()->back()->with('success', $data);
-        } else {
-            return redirect()->back()->with('gagal', $data);
         }
+        return redirect()->back()->with('gagal', $data);
     }
 }

@@ -55,9 +55,8 @@ class PostController extends Controller
         $data = $this->repository->save($request);
         if ($data === 'saved') {
             return redirect()->route('post.index');
-        } else {
-            return redirect()->back()->with('errorCreate', $data);
         }
+        return redirect()->back()->with('gagal', $data);
     }
 
     public function update(Post $post, PostRequest $request)

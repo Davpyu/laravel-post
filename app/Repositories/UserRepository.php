@@ -11,9 +11,11 @@ class UserRepository extends Repository implements UserContract
 {
     public function dashboard()
     {
-        return User::with(['post' => function ($query) {
-            $query->orderBy('created_at', 'desc');
-        }])->find(Auth::user()->id);
+        return User::with([
+            'post' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+            },
+        ])->find(Auth::user()->id);
     }
 
     public function register(Request $request)

@@ -13,7 +13,7 @@ module.exports = {
             }]
         }) : null,
         process.env.NODE_ENV === 'production' ? purgecss({
-            content: ['./resources/views/**/*.blade.php'],
+            content: ['./resources/views/**/*.blade.php', './public/js/*.js'],
             defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
         }) : null,
     ],

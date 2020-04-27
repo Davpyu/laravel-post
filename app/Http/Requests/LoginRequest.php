@@ -25,14 +25,14 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
         ];
     }
 
     public function messages()
     {
         return [
-            'email.exists' => 'Email belum terdaftar'
+            'email.exists' => 'Email belum terdaftar',
         ];
     }
 }

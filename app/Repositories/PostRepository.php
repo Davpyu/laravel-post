@@ -29,12 +29,11 @@ class PostRepository extends Repository implements PostContract
 
     public function search($keyword)
     {
-        $data = Post::where('title', 'like', "%{$keyword}%")
+        return Post::where('title', 'like', "%{$keyword}%")
             ->orWhere('content', 'like', "%{$keyword}%")
             ->with('user:id,name')
             ->latest()
             ->simplePaginate(10);
-        return $data;
     }
 
     public function save(Request $request)
@@ -79,9 +78,11 @@ class PostRepository extends Repository implements PostContract
             $this->getCacheKey(self::CACHE, "from.{$id}"),
             $this->getTTL(15),
             function () use ($id) {
-                return User::with(['post' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }])->find($id);
+                return User::with([
+                    'post' => function ($query) {
+                        $query->orderBy('created_at', 'desc');
+                    },
+                ])->find($id);
             }
         );
     }

@@ -35,9 +35,8 @@ class UserController extends Controller
         $data = $this->repository->login($request);
         if (Auth::check()) {
             return redirect()->route('post.index');
-        } else {
-            return redirect()->back()->with('gagal', $data);
         }
+        return redirect()->back()->with('gagal', $data);
     }
 
     public function loginForm()
@@ -53,6 +52,6 @@ class UserController extends Controller
     public function logout()
     {
         $this->repository->logout();
-        return redirect()->route('post.index');
+        return redirect()->back();
     }
 }

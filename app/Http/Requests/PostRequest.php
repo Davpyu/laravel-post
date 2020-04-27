@@ -31,7 +31,6 @@ class PostRequest extends FormRequest
                 ];
                 break;
             case 'PUT':
-
                 return [
                     'title' => 'sometimes|required|string',
                     'content' => 'sometimes|required|string',

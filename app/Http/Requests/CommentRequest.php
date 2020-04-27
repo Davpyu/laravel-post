@@ -26,7 +26,7 @@ class CommentRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email',
-            'website' => ["nullable", "regex:/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$/"],
+            'website' => ['nullable', "regex:/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$/"],
             'comment' => 'required|string',
         ];
     }
@@ -34,7 +34,7 @@ class CommentRequest extends FormRequest
     public function messages()
     {
         return [
-            'website.regex' => 'Please put valid url'
+            'website.regex' => 'Please put valid url',
         ];
     }
 }

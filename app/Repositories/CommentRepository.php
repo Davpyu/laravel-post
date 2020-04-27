@@ -14,8 +14,7 @@ class CommentRepository extends Repository implements CommentContract
         if ($comment) {
             $this->forgetCache(["POST.DETAILS.{$comment->post_id}"]);
             return 'comment added';
-        } else {
-            return 'comment gagal';
         }
+        return 'comment gagal';
     }
 }
