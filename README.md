@@ -1,11 +1,28 @@
 # Laravel Post
-Simple Post & Comment Project built with Laravel & TailwindCSS
+Projek sederhana postingan dan komentar menggunakan Laravel dan TailwindCSS
 
-## Features
+## Description
+Projek ini memiliki fitur dibawah deskripsi ini. Dibangun dengan metodologi waterfall karena saya paham metode ini dan menurut saya metode ini paling cocok untuk projek mandiri. Untuk arsitektur yang saya gunakan disini adalah Repository Design Pattern, untuk penjelasan lebih lengkap bisa dilihat [disini](https://medium.com/employbl/use-the-repository-design-pattern-in-a-laravel-application-13f0b46a3dce). Untuk mempermudah pengembangan dibagian front-end, saya menggunakan [TailwindCSS](https://tailwindcss.com) sebagai CSS Framework. Untuk meningkatkan stabilitas kode dan mencegah bug, saya menggunakan [PHP Insights](https://github.com/nunomaduro/phpinsights).
+
+Untuk menggunakannya, jalankan 
+```bash 
+php artisan insights 
+```
+
+Untuk kekurangan dari kualitas code, bisa dilihat dari rangkuman pada PHP Insights tersebut.
+
+Untuk kekurangan pada fitur adalah sebagai berikut :
+- Tidak adanya forgot password, verification email dan change password.
+- Tidak adanya fitur upload image baik untuk foto profil user maupun content pada postingan dikarenakan pada ERD yang diberikan tidak ada field untuk media/gambar
+- Tidak adanya fitur testing.
+
+Untuk segi performa, menurut saya sudah cukup cepat, tetapi perlu dites lebih lanjut.
+
+## Fitur
 
 - Basic Auth (Login, Register & Logout)
-- Factory and Seeder are ready-to-run
-- Basic CRUD on Post
+- Factory dan Seeder sudah siap untuk dijalankan
+- Basic CRUD di Postingan
 
 ## Prerequisites
 
@@ -109,7 +126,7 @@ php artisan migrate:refresh --seed
 
 **Laravel Docs:**
 
-[https://laravel.com/docs/7.x](https://laravel.com/docs/7.x)
+[Laravel 7.x](https://laravel.com/docs/7.x)
 
 ## License
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
